@@ -1,4 +1,4 @@
-# King developer test. 
+# GameOne: King developer test. 
 
 James Lau (jameslauwf@gmail.com) 01 Nov 2018
 
