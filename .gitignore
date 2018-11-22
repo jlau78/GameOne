@@ -1,6 +1,8 @@
 .classpath
 .project
 target
+GameOne-0.1.jar
+log
 
 # Compiled class file
 *.class

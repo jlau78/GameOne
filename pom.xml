@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.king</groupId>
+	<artifactId>GameOne</artifactId>
+	<version>0.1</version>
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+
+	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.ws.rs</groupId> -->
+<!-- 			<artifactId>jsr311-api</artifactId> -->
+<!-- 			<version>1.1.1</version> -->
+<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.king.Application</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<!-- <repositories> -->
+	<!-- <repository> <id>tensorflow-maven</id> <url>https://mvnrepository.com/artifact/org.tensorflow/tensorflow</url> -->
+	<!-- </repository> <repository> <id>nexus-repo-public</id> <name>Sonatype 
+		Nexus -->
+	<!-- Public</name> <url>http://longscm01e.gta.travel.lcl:8081/nexus/content/repositories/public</url> -->
+	<!-- </repository> <repository> <id>nexus-repo</id> <name>Sonatype Nexus</name> -->
+	<!-- <url>http://longscm01e.gta.travel.lcl:8081/nexus/content/repositories/releases</url> -->
+	<!-- </repository> <repository> <id>nexus-m2-inhouse-repo</id> <name>Nexus 
+		M2 -->
+	<!-- Repo Inhouse </name> <url>http://m2repo.emea.kuoni.int/nexus/content/repositories/inhouse</url> -->
+	<!-- </repository> <repository> <id>nexus-m2-inhouse-snapshot-repo</id> 
+		<name>Nexus -->
+	<!-- M2 Repo Inhouse Snapshot </name> <url>http://m2repo.emea.kuoni.int/nexus/content/repositories/inhouse.snapshot</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+
+</project>
