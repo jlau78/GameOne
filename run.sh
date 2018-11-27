@@ -9,3 +9,5 @@ then
 fi
 
 ${JAVA_HOME}/bin/java -Xms500M -Xmx500M ${JAVA_OPTS} -cp "GameOne-0.1.jar" com.king.Application
+
+exit 0

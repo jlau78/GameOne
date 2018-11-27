@@ -1,7 +1,5 @@
 package com.king.client;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
@@ -12,8 +10,6 @@ import com.king.server.service.LoginService;
 import com.king.server.service.PlayTrackerService;
 import com.king.server.service.PlayTrackerServiceImpl;
 import com.king.server.service.SimpleLoginService;
-import com.king.server.service.event.ScoreEvent;
-import com.king.server.service.event.ScoreEventListener;
 import com.king.utils.Utils;
 
 public class GameOne implements Game {
@@ -30,16 +26,12 @@ public class GameOne implements Game {
 	private PlayTrackerService tracker;
 	private LoginService loginService;
 
-	private List<ScoreEventListener> scoreEventListeners = new ArrayList<>();
-
 	private GameOne() {
 		Properties configs = Utils.readGlobalConfigs();
 
 		this.simulate_play_pause_ms = Long.valueOf((String) configs.get("simulateLevelPlayPause"));
 		this.maxGameLevelsAllowed = Integer.valueOf((String) configs.get("maxGameLevelsAllowed"));
 		this.maxLevelPlay = Integer.valueOf((String) configs.get("maxLevelPlay"));
-
-		scoreEventListeners.add(getTracker());
 	}
 
 	public static synchronized GameOne getInstance() {
@@ -96,16 +88,12 @@ public class GameOne implements Game {
 	public void stop(final User user) {
 		if (user != null) {
 			getLoginService().logout(user.getSession().getId());
-//			((PlayTrackerServiceImpl) this.tracker).printScores();
 			LOGGER.log(Level.INFO, "User completed all game levels!!! " + user.getName());
 		}
 
 	}
 
 	private void levelProgress(User user) {
-		// Complete level if level time elapsed
-		long levelElapsed = System.currentTimeMillis() - user.getSession().getStartTime();
-
 		user.setCurrentLevelPlayed(user.getCurrentLevelPlayed() + 1);
 		if (user.getCurrentLevelPlayed() > maxLevelPlay) {
 			upLevel(user);
@@ -126,7 +114,6 @@ public class GameOne implements Game {
 
 			LOGGER.log(Level.INFO, "User " + user.getName() + " moved up to next level:" + user.getCurrentLevel());
 
-//			printAllScores();
 			printUserCurrentLevelScores(user, user.getCurrentLevel() - 1);
 
 		}
@@ -142,7 +129,7 @@ public class GameOne implements Game {
 	@Override
 	public boolean sendScore(final User user, final int level, final int score) {
 		if (score > 0) {
-			scoreEventListeners.forEach(se -> se.scoreUpdate(new ScoreEvent(user, level, score)));
+			getTracker().recordScore(user, level, score);
 
 			LOGGER.log(Level.FINER, "Score sent for user:{0}, level:{1} score:{2}",
 					new Object[] { user.getName(), String.valueOf(level), String.valueOf(score) });
@@ -161,11 +148,6 @@ public class GameOne implements Game {
 		curScore += rnd.nextInt(113);
 
 		return curScore;
-	}
-
-	public void printAllScores() {
-
-		((PlayTrackerServiceImpl) getTracker()).printScores();
 	}
 
 	public void printUserCurrentLevelScores(final User user, final int level) {

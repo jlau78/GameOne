@@ -20,14 +20,7 @@ public class Application {
 	Map<String, String> players = new HashMap<>();
 
 	public Application() {
-
-//		players.put("John", "pass");
-//		players.put("Paul", "pass");
-//		players.put("Gary", "pass");
-//		players.put("Smurf", "pass");
-
 		players = Utils.getPlayers();
-
 	}
 
 	protected Map<String, String> getPlayers() {

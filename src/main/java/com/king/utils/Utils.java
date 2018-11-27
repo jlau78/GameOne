@@ -112,7 +112,7 @@ public class Utils {
 			}
 
 		} catch (IOException e) {
-
+			LOGGER.log(Level.SEVERE, "FAIL to read the given file:" + file);
 		} finally {
 			if (in != null && br != null) {
 				try {

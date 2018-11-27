@@ -1,12 +1,11 @@
 package com.king.server.service;
 
 import com.king.model.profile.User;
-import com.king.server.service.event.ScoreEventListener;
 
 /**
  * TrackerService to track game play activity like scores
  */
-public interface PlayTrackerService extends ScoreEventListener {
+public interface PlayTrackerService {
 
 	/**
 	 * Record the user score

@@ -62,40 +62,13 @@ public class LifetimeThreadExcutorService<V> {
 		return success;
 	}
 
-	public boolean execute(final List<Runnable> runnables) {
-		LOGGER.log(Level.INFO,
-				LifetimeThreadExcutorService.class.getName() + ".execute(List<Runnable> not implemented");
-		return true;
-	}
-
 	/**
 	 * Exposed public to allow the ThreadPool to be restarted if it was ever
 	 * shutdown
 	 */
-	public void initializeThreadPool() {
+	private void initializeThreadPool() {
 		if (null == executorService) {
 			executorService = Executors.newCachedThreadPool();
-		}
-	}
-
-	/**
-	 * Expose shutdown call to executor
-	 */
-	public void shutdown() {
-
-		if (null != executorService) {
-			try {
-				executorService.shutdown();
-				executorService.awaitTermination(TERMINATE_WAIT_SECONDS, TimeUnit.SECONDS);
-			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE,
-						"ExecutorService fail to shutdown gracefully in 5 seconds. Will finally shutdownNow.");
-			} finally {
-				executorService.shutdownNow();
-				executorService = null;
-			}
-
-			LOGGER.log(Level.INFO, this.getClass().getName() + " threadpool has been shutdown.");
 		}
 	}
 

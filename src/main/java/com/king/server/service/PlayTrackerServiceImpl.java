@@ -14,7 +14,6 @@ import com.king.model.profile.Score;
 import com.king.model.profile.User;
 import com.king.model.repository.MapRepository;
 import com.king.model.repository.ScoreRepository;
-import com.king.server.service.event.ScoreEvent;
 import com.king.utils.Utils;
 import com.king.utils.Utils.Constants;;
 
@@ -38,11 +37,6 @@ public class PlayTrackerServiceImpl implements PlayTrackerService {
 			playTrackerService = new PlayTrackerServiceImpl();
 		}
 		return playTrackerService;
-	}
-
-	@Override
-	public void scoreUpdate(final ScoreEvent event) {
-		recordScore(event.getUser(), event.getLevel(), event.getScore());
 	}
 
 	/**
