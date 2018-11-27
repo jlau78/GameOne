@@ -1,8 +1,8 @@
 .classpath
 .project
 target
-GameOne-0.1.jar
-log
+#GameOne-0.1.jar
+#log/*
 
 # Compiled class file
 *.class
@@ -17,7 +17,7 @@ log
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
